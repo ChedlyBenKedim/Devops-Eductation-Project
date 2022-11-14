@@ -2,18 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
 	<distributionManagement>
-    <snapshotRepository>
-        <id>deploymentRepo</id>
-        <name>Internal Snapshots</name>
-        <url>http://192.168.1.111:8081/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-    <repository>
-        <id>deploymentRepo</id>
-        <name>Internal Releases</name>
-        <url>http://192.168.1.111:8081/nexus/content/repositories/releases/</url>
-    </repository>
+   <repository>
+      <id>deploymentRepo</id>
+      <url>http://http://192.168.1.111:8081/repositories/maven-releases</url>
+   </repository>
 </distributionManagement>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -28,7 +21,7 @@
 	<description>Projet pour le module DevOps</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
 	
@@ -40,6 +33,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+    <version>2.5.0</version>
+</dependency>
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.vintage</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <scope>test</scope>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -56,8 +71,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -69,30 +82,8 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
-		
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.8.2</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>RELEASE</version>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
-	
-	
 
 	<build>
 		<plugins>
@@ -108,33 +99,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
-			
-			
-            <plugin>
-                     <groupId>org.apache.maven.plugins</groupId>
-                     <artifactId>maven-resources-plugin</artifactId>
-                     <version>3.1.0</version>
-            </plugin>
-            <plugin>
-            <groupId>com.baeldung</groupId>
-			<artifactId>maven-snapshot-repository</artifactId>
-			<version>1.0.0</version>
-			</plugin>
-	
-     
-     
-     <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-deploy-plugin</artifactId>
-  
-    </plugin>
-    
 		</plugins>
 		
-		
-		
 	</build>
-	
-	
+
 </project>
